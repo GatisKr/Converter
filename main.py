@@ -3,11 +3,9 @@
 #       A program to convert temperature amd distance
 # by: GK
 
-import os
-
 def convert():
     ask = input("\nWhat would you like to convert?\nTemperature [1], Distance [2]: ")
-    if ask == "1":
+    if ask in ["1"]:
         convert_t()
     elif ask == "2":
         convert_d()
@@ -16,7 +14,7 @@ def convert():
 
 def convert_t():
     ask = input("Enter 'C' for Celsius or 'F' for Fahrenheit: ")
-    if ask.lower() == "c":
+    if ask.lower() in ["c"]:
         cels()
     elif ask.lower() == "f":
         fahr()
@@ -25,7 +23,7 @@ def convert_t():
 
 def convert_d():
     ask = input("Enter 'K' for Kilometers or 'M' for Miles: ")
-    if ask.lower() == "k":
+    if ask.lower() in ["k"]:
         kilom()
     elif ask.lower() == "m":
         miles()
@@ -54,6 +52,7 @@ def cels():
     try:
         celsius = float(input("\nWhat is the Celsius temperature? "))
         fahrenheit = 9/5 * celsius + 32
+        fahrenheit = round(fahrenheit, 2)
         print("The temperature is", fahrenheit, "degrees Fahrenheit.")
         another_t()
     except (NameError, SyntaxError, ValueError):
@@ -64,6 +63,7 @@ def fahr():
     try:
         fahrenheit = float(input("\nWhat is the Fahrenheit temperature? "))
         celsius = 5/9 * (fahrenheit - 32)
+        celsius = round(celsius, 2)
         print("The temperature is", celsius, "degrees Celsius.")
         another_t()
     except (NameError, SyntaxError, ValueError):
@@ -74,6 +74,7 @@ def kilom():
     try:
         km = float(input("\nEnter distance in kilometers: "))
         ml = km * 0.621371
+        ml = round(ml, 3)
         print("The distance is", ml, "miles.")
         another_d()
     except (NameError, SyntaxError, ValueError):
@@ -84,6 +85,7 @@ def miles():
     try:
         ml = float(input("\nEnter distance in miles: "))
         km = ml * 1.60934
+        km = round(km, 3)
         print("The distance is", km, "kilometers.")
         another_d()
     except (NameError, SyntaxError, ValueError):
@@ -99,6 +101,5 @@ def table_fahrenheit():
         fahrenheit = 9/5 * celsius + 32
         print(str(celsius) + " C" + " = " + str(fahrenheit) + " F")
 
-os.system("cls")
 print("This program converts temperatures and distances.")
 convert()
